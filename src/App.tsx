@@ -166,12 +166,20 @@ init({
 // ─── Hidden actions per tier ──────────────────────────────────────────────────
 
 const AI_ACTIONS: Action[] = [
+  // SpotIQ / classic AI
   Action.SpotIQAnalyze,
   Action.AIHighlights,
   Action.EnableContextualChangeAnalysis,
   Action.EnableIterativeChangeAnalysis,
   Action.ManageMonitor,
   Action.CreateMonitor,
+  // Spotter on individual viz cards and sidebar
+  Action.AskAi,
+  Action.PreviewDataSpotter,
+  Action.ResetSpotterChat,
+  Action.SpotterFeedback,
+  Action.SpotterSidebarToggle,
+  Action.SpotterNewChat,
 ]
 
 const INTERACTIVE_ACTIONS: Action[] = [
@@ -200,9 +208,9 @@ const INTERACTIVE_ACTIONS: Action[] = [
 ]
 
 export function hiddenActionsForTier(tier: Tier): Action[] {
-  if (tier === 'tier1') return [...INTERACTIVE_ACTIONS, ...AI_ACTIONS]
-  if (tier === 'tier2') return AI_ACTIONS
-  return []
+  if (tier === 'basic')      return [...INTERACTIVE_ACTIONS, ...AI_ACTIONS]
+  if (tier === 'essentials') return AI_ACTIONS
+  return [] // pro — nothing hidden
 }
 
 function Shell() {

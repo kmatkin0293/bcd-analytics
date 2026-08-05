@@ -513,10 +513,10 @@ export default function Home() {
   const { tier, isSpotterPro } = useTier()
   const navigate = useNavigate()
 
-  const tierName = tier === 'tier3' ? 'Pro' : tier === 'tier2' ? 'Standard' : 'View Only'
+  const tierName = tier === 'pro' ? 'Pro' : tier === 'essentials' ? 'Essentials' : 'Basic'
 
   return (
-    <div style={{ background: 'transparent', height: '100%', overflow: 'hidden' }}>
+    <div style={{ background: 'transparent' }}>
       <style>{`
         @keyframes kpiShimmer {
           0%,100% { opacity: 0.4; }
@@ -609,7 +609,10 @@ export default function Home() {
             Quick Access
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
-            {NAV_CARDS.filter(c => c.route !== '/program-insights/overview' || isSpotterPro).map(c => (
+            {NAV_CARDS.filter(c => {
+              if (c.route === '/ai-assistant') return isSpotterPro
+              return true
+            }).map(c => (
               <NavCard key={c.route} {...c} />
             ))}
           </div>

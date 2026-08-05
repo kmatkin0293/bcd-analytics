@@ -22,53 +22,9 @@ const TAB_META: Record<string, { title: string; desc: string }> = {
 
 export default function ProgramInsights() {
   const { tab = 'overview' } = useParams<{ tab?: string }>()
-  const { tier, isInteractive } = useTier()
+  const { tier } = useTier()
   const navigate = useNavigate()
   const meta = TAB_META[tab] ?? TAB_META.overview
-
-  // Tier 1 (View Only) cannot access Program Insights
-  if (!isInteractive) {
-    return (
-      <div style={{
-        background: 'transparent', minHeight: '100%',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40,
-      }}>
-        <div style={{
-          background: '#ffffff', border: '1px solid #DED9EF',
-          borderRadius: 16, padding: '48px 52px', textAlign: 'center', maxWidth: 460,
-        }}>
-          <div style={{
-            width: 52, height: 52, borderRadius: 12,
-            background: 'rgba(43,39,119,0.07)', border: '1px solid rgba(43,39,119,0.18)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            margin: '0 auto 20px',
-          }}>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2B2777" strokeWidth="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
-          </div>
-          <h2 style={{ fontSize: 20, fontWeight: 800, color: '#1A1245', marginBottom: 10 }}>
-            Program Insights requires Standard or Pro
-          </h2>
-          <p style={{ fontSize: 13.5, color: '#4A4570', lineHeight: 1.65, marginBottom: 28 }}>
-            Your current View Only tier does not include Program Insights. Upgrade to access flights, hotels, ground and operations analytics.
-          </p>
-          <button
-            onClick={() => navigate('/tier-select')}
-            style={{
-              background: '#2B2777', color: '#fff', border: 'none',
-              borderRadius: 9, padding: '11px 28px', fontSize: 14, fontWeight: 700,
-              cursor: 'pointer', fontFamily: 'inherit', transition: 'background 0.15s, transform 0.15s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.background = '#211E5C'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-            onMouseLeave={e => { e.currentTarget.style.background = '#2B2777'; e.currentTarget.style.transform = 'none' }}
-          >
-            Change Tier
-          </button>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="embed-page">

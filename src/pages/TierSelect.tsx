@@ -9,15 +9,13 @@ const TIERS: {
   badge: string
   name: string
   desc: string
-  color: string
   features: { label: string; included: boolean }[]
 }[] = [
   {
-    id: 'tier1',
+    id: 'basic',
     badge: 'Read Only',
-    name: 'View Only',
-    desc: 'Read-only dashboards with no interactive features or AI.',
-    color: 'rgba(255,255,255,0.22)',
+    name: 'Basic',
+    desc: 'View all dashboards and liveboards with no interactive features or AI.',
     features: [
       { label: 'Payment Insights Dashboard',     included: true  },
       { label: 'Program Analytics',              included: true  },
@@ -28,11 +26,10 @@ const TIERS: {
     ],
   },
   {
-    id: 'tier2',
+    id: 'essentials',
     badge: 'Standard',
-    name: 'Standard',
+    name: 'Essentials',
     desc: 'Full interactive analytics — drill-down, filters, exports — without AI features.',
-    color: 'rgba(255,255,255,0.22)',
     features: [
       { label: 'Payment Insights Dashboard',     included: true  },
       { label: 'Program Analytics',              included: true  },
@@ -43,11 +40,10 @@ const TIERS: {
     ],
   },
   {
-    id: 'tier3',
+    id: 'pro',
     badge: 'Recommended',
     name: 'Pro',
-    desc: 'Everything in Standard plus AI Analyst, SpotIQ and change analysis.',
-    color: ORANGE,
+    desc: 'Everything in Essentials plus AI Analyst, SpotIQ and change analysis.',
     features: [
       { label: 'Payment Insights Dashboard',     included: true },
       { label: 'Program Analytics',              included: true },
@@ -136,7 +132,7 @@ export default function TierSelect() {
         {TIERS.map(t => {
           const isActive = currentTier === t.id
           const isHovered = hover === t.id
-          const isPro = t.id === 'tier3'
+          const isPro = t.id === 'pro'
           const borderColor = isPro
             ? (isHovered || isActive ? ORANGE : 'rgba(232,101,42,0.45)')
             : (isHovered || isActive ? 'rgba(255,255,255,0.30)' : 'rgba(255,255,255,0.12)')

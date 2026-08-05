@@ -156,8 +156,8 @@ export default function Sidebar() {
   const navigate = useNavigate()
   useLocation()
 
-  const tierLabel = tier === 'tier1' ? 'View Only' : tier === 'tier2' ? 'Standard' : 'Pro'
-  const tierColor = tier === 'tier3' ? '#E8652A' : tier === 'tier2' ? '#2B2777' : '#9CA3AF'
+  const tierLabel = tier === 'pro' ? 'Pro' : tier === 'essentials' ? 'Essentials' : 'Basic'
+  const tierColor = tier === 'pro' ? '#E8652A' : tier === 'essentials' ? '#2B2777' : '#9CA3AF'
 
   return (
     <aside className="sidebar">
@@ -196,7 +196,7 @@ export default function Sidebar() {
         {/* Tier badge — click to switch tier */}
         {!isInteractive && (
           <div style={{ margin: '4px 8px', padding: '6px 10px', background: 'rgba(43,39,119,0.06)', borderRadius: 8, fontSize: 11, color: '#7B6AA0' }}>
-            Interactive features disabled in View Only tier.
+            Interactive features disabled on Basic.
           </div>
         )}
       </nav>
