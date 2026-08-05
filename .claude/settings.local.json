@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "mcp__claude-in-chrome__navigate",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "Bash(xargs sed -i '' -e 's/#B91C2E/#8A0051/g' -e 's/#9A1525/#6E0041/g' -e 's/#6B0010/#4A0030/g' -e s/185,28,46/138,0,81/g -e 's/185, 28, 46/138, 0, 81/g' -e 's/#0C0208/#090108/g' -e 's/#160310/#120210/g' -e 's/#1E0514/#1A0318/g' -e 's/#28081C/#220420/g' -e 's/#2A0818/#260518/g' -e 's/#3C1028/#360828/g' -e 's/#180310/#120210/g' -e 's/#200414/#1A0318/g' -e 's/#140208/#100108/g')",
+      "Bash(xargs sed -i '' -e 's/#0044CC/#8A0051/g' -e s/0,68,204/138,0,81/g -e s/0,20,80/80,0,40/g)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5175)"
+    ]
+  }
+}

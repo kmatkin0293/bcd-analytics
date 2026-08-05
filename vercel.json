@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/ts-api/(.*)",
+      "destination": "https://se-thoughtspot-cloud.thoughtspot.cloud/$1"
+    },
+    {
+      "source": "/((?!ts-api|assets|vite\\.svg).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
