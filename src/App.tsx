@@ -12,9 +12,7 @@ import TierSelect from './pages/TierSelect'
 
 init({
   thoughtSpotHost: 'https://sebe.thoughtspotstaging.cloud',
-  authType: AuthType.Basic,
-  username: 'katie.matkin@thoughtspot.com',
-  password: 'Welcome2026!',
+  authType: AuthType.None,
   customizations: {
     iconSpriteUrl: 'https://cdn.jsdelivr.net/gh/CamTS256/icon-store/robot11.svg',
     content: {
