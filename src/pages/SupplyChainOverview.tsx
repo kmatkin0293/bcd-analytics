@@ -1,18 +1,8 @@
 import { LiveboardEmbed } from '@thoughtspot/visual-embed-sdk/react'
-import { Action } from '@thoughtspot/visual-embed-sdk'
 import { useTier } from '../context/TierContext'
+import { hiddenActionsForTier } from '../App'
 
 const LIVEBOARD_ID = '76354676-c78f-4a99-852b-247befb976ed'
-
-const ESSENTIALS_HIDDEN: Action[] = [
-  Action.DrillDown,
-  Action.SpotIQAnalyze,
-  Action.ManageMonitor,
-  Action.CreateMonitor,
-  Action.AIHighlights,
-  Action.EnableContextualChangeAnalysis,
-  Action.EnableIterativeChangeAnalysis,
-]
 
 const KPIS = [
   { label: 'Total Charges',         value: '$14.79M', sub: 'Last 30 Days',    color: '#22C55E' },
@@ -46,7 +36,7 @@ function PageKpis() {
 }
 
 export default function SupplyChainOverview() {
-  const { isSpotterPro } = useTier()
+  const { tier } = useTier()
 
   return (
     <div className="embed-page">
@@ -62,7 +52,7 @@ export default function SupplyChainOverview() {
         <div className="embed-shell">
           <LiveboardEmbed
             liveboardId={LIVEBOARD_ID}
-            hiddenActions={isSpotterPro ? [] : ESSENTIALS_HIDDEN}
+            hiddenActions={hiddenActionsForTier(tier)}
             fullHeight={true}
             isLiveboardMasterpiecesEnabled={true}
             frameParams={{ width: '100%' }}

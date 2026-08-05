@@ -513,7 +513,7 @@ export default function Home() {
   const { tier, isSpotterPro } = useTier()
   const navigate = useNavigate()
 
-  const tierName = tier === 'pro' ? 'Pro' : 'Essentials'
+  const tierName = tier === 'tier3' ? 'Pro' : tier === 'tier2' ? 'Standard' : 'View Only'
 
   return (
     <div style={{ background: 'transparent', height: '100%', overflow: 'hidden' }}>

@@ -100,10 +100,7 @@ export default function Header() {
       {/* Right: action items */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
         {isSpotterPro && (
-          <button
-            className="ai-analyst-btn"
-            onClick={() => navigate('/ai-assistant')}
-          >
+          <button className="ai-analyst-btn" onClick={() => navigate('/ai-assistant')}>
             <AIAnalystIcon />
             AI Analyst
           </button>

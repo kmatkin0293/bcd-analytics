@@ -1,19 +1,9 @@
 import { LiveboardEmbed } from '@thoughtspot/visual-embed-sdk/react'
-import { Action } from '@thoughtspot/visual-embed-sdk'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTier } from '../context/TierContext'
+import { hiddenActionsForTier } from '../App'
 
 const LIVEBOARD_ID = '757c3274-bbf8-490d-8078-f64f44351a64'
-
-const ESSENTIALS_HIDDEN: Action[] = [
-  Action.DrillDown,
-  Action.SpotIQAnalyze,
-  Action.ManageMonitor,
-  Action.CreateMonitor,
-  Action.AIHighlights,
-  Action.EnableContextualChangeAnalysis,
-  Action.EnableIterativeChangeAnalysis,
-]
 
 // tabId: ThoughtSpot liveboard tab GUID. undefined = show full liveboard (Overview)
 const TABS: { key: string; label: string; tabId?: string }[] = [
@@ -32,11 +22,12 @@ const TAB_META: Record<string, { title: string; desc: string }> = {
 
 export default function ProgramInsights() {
   const { tab = 'overview' } = useParams<{ tab?: string }>()
-  const { isSpotterPro } = useTier()
+  const { tier, isInteractive } = useTier()
   const navigate = useNavigate()
   const meta = TAB_META[tab] ?? TAB_META.overview
 
-  if (!isSpotterPro) {
+  // Tier 1 (View Only) cannot access Program Insights
+  if (!isInteractive) {
     return (
       <div style={{
         background: 'transparent', minHeight: '100%',
@@ -57,10 +48,10 @@ export default function ProgramInsights() {
             </svg>
           </div>
           <h2 style={{ fontSize: 20, fontWeight: 800, color: '#1A1245', marginBottom: 10 }}>
-            Program Insights is a Pro feature
+            Program Insights requires Standard or Pro
           </h2>
           <p style={{ fontSize: 13.5, color: '#4A4570', lineHeight: 1.65, marginBottom: 28 }}>
-            Upgrade to TripSource Pro to access flights, hotels, ground and operations analytics.
+            Your current View Only tier does not include Program Insights. Upgrade to access flights, hotels, ground and operations analytics.
           </p>
           <button
             onClick={() => navigate('/tier-select')}
@@ -72,7 +63,7 @@ export default function ProgramInsights() {
             onMouseEnter={e => { e.currentTarget.style.background = '#211E5C'; e.currentTarget.style.transform = 'translateY(-1px)' }}
             onMouseLeave={e => { e.currentTarget.style.background = '#2B2777'; e.currentTarget.style.transform = 'none' }}
           >
-            Upgrade to Pro
+            Change Tier
           </button>
         </div>
       </div>
@@ -130,7 +121,7 @@ export default function ProgramInsights() {
                 key={tab}
                 liveboardId={LIVEBOARD_ID}
                 {...(activeTabId ? { activeTabId } : {})}
-                hiddenActions={isSpotterPro ? [] : ESSENTIALS_HIDDEN}
+                hiddenActions={hiddenActionsForTier(tier)}
                 fullHeight={true}
                 isLiveboardMasterpiecesEnabled={true}
                 frameParams={{ width: '100%' }}

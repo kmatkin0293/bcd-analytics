@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { init, AuthType } from '@thoughtspot/visual-embed-sdk'
-import { TierProvider, useTier } from './context/TierContext'
+import { init, AuthType, Action } from '@thoughtspot/visual-embed-sdk'
+import { TierProvider, useTier, Tier } from './context/TierContext'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 import AIAssistantWidget from './components/AIAssistantWidget'
@@ -162,6 +162,48 @@ init({
     },
   },
 })
+
+// ─── Hidden actions per tier ──────────────────────────────────────────────────
+
+const AI_ACTIONS: Action[] = [
+  Action.SpotIQAnalyze,
+  Action.AIHighlights,
+  Action.EnableContextualChangeAnalysis,
+  Action.EnableIterativeChangeAnalysis,
+  Action.ManageMonitor,
+  Action.CreateMonitor,
+]
+
+const INTERACTIVE_ACTIONS: Action[] = [
+  Action.DrillDown,
+  Action.DrillExclude,
+  Action.DrillInclude,
+  Action.AddFilter,
+  Action.CrossFilter,
+  Action.RemoveCrossFilter,
+  Action.Share,
+  Action.CopyLink,
+  Action.Download,
+  Action.DownloadAsCsv,
+  Action.DownloadAsXlsx,
+  Action.DownloadAsPdf,
+  Action.Edit,
+  Action.EditTML,
+  Action.ExportTML,
+  Action.UpdateTML,
+  Action.MakeACopy,
+  Action.SaveAsView,
+  Action.Pin,
+  Action.ShowUnderlyingData,
+  Action.Explore,
+  Action.ReportError,
+]
+
+export function hiddenActionsForTier(tier: Tier): Action[] {
+  if (tier === 'tier1') return [...INTERACTIVE_ACTIONS, ...AI_ACTIONS]
+  if (tier === 'tier2') return AI_ACTIONS
+  return []
+}
 
 function Shell() {
   const { isSpotterPro } = useTier()
