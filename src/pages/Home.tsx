@@ -8,10 +8,10 @@ const WORKSHEET_ID = '83774852-f400-4fdc-94b3-a6be4804c201'
 const TS_HOST      = 'https://sebe.thoughtspotstaging.cloud'
 const LIVEBOARD_ID = '757c3274-bbf8-490d-8078-f64f44351a64'
 
-const ACCENT       = '#2B2777'
-const ACCENT_LIGHT = 'rgba(43,39,119,0.07)'
-const ACCENT_BORDER= 'rgba(43,39,119,0.20)'
-const ORANGE       = '#E8652A'
+const ACCENT       = '#003087'
+const ACCENT_LIGHT = 'rgba(0,48,135,0.07)'
+const ACCENT_BORDER= 'rgba(0,48,135,0.20)'
+const ORANGE       = '#F46522'
 
 // ─── KPI icons ────────────────────────────────────────────────────────────────
 
@@ -288,10 +288,10 @@ function SearchBar() {
         <div style={{
           display: 'flex', alignItems: 'center',
           background: '#FFFFFF',
-          border: '1px solid #D8D3ED',
+          border: '1px solid #CBD8EE',
           borderRadius: '12px', padding: '4px 4px 4px 16px',
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7B6AA0" strokeWidth="2" style={{ flexShrink: 0, marginRight: 10 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B7AB5" strokeWidth="2" style={{ flexShrink: 0, marginRight: 10 }}>
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
           <input
@@ -302,8 +302,8 @@ function SearchBar() {
             placeholder={placeholder || 'Ask AI Analyst anything about your travel spend data…'}
             style={{
               flex: 1, background: 'transparent', border: 'none', outline: 'none',
-              color: '#1A1235', fontSize: '13.5px', fontFamily: 'inherit',
-              padding: '10px 0', caretColor: '#3B1FA8',
+              color: '#001E50', fontSize: '13.5px', fontFamily: 'inherit',
+              padding: '10px 0', caretColor: '#003087',
             }}
           />
           <button
@@ -333,19 +333,19 @@ function SearchBar() {
             onClick={() => go(c)}
             style={{
               background: '#FFFFFF',
-              border: '1px solid #D8D3ED',
+              border: '1px solid #CBD8EE',
               borderRadius: '20px', padding: '5px 13px',
-              color: '#4A4570',
+              color: '#3D5A8A',
               fontSize: '12px', cursor: 'pointer', fontFamily: 'inherit',
               transition: 'all 0.15s',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.borderColor = '#2B2777'
-              e.currentTarget.style.color = '#2B2777'
+              e.currentTarget.style.borderColor = '#003087'
+              e.currentTarget.style.color = '#003087'
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.borderColor = '#D8D3ED'
-              e.currentTarget.style.color = '#4A4570'
+              e.currentTarget.style.borderColor = '#CBD8EE'
+              e.currentTarget.style.color = '#3D5A8A'
             }}
           >
             {c}
@@ -426,8 +426,8 @@ function NavCard({ icon, title, body, route, accentOrange }: { icon: React.React
       }}>
         {icon}
       </div>
-      <h3 style={{ fontSize: 13, fontWeight: 700, color: '#1A2340', marginBottom: 5 }}>{title}</h3>
-      <p style={{ fontSize: 12, color: '#5B6B8A', lineHeight: 1.55, marginBottom: 14 }}>{body}</p>
+      <h3 style={{ fontSize: 13, fontWeight: 700, color: '#001E50', marginBottom: 5 }}>{title}</h3>
+      <p style={{ fontSize: 12, color: '#5B7A9A', lineHeight: 1.55, marginBottom: 14 }}>{body}</p>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: color, fontSize: 12, fontWeight: 600 }}>
         Open
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -532,20 +532,20 @@ export default function Home() {
         <div style={{ padding: '30px 44px 34px', position: 'relative', zIndex: 1 }}>
 
           {/* Breadcrumb */}
-          <div style={{ fontSize: 11, color: '#6B6598', marginBottom: 14, fontWeight: 600, letterSpacing: '0.04em' }}>
-            BCD Travel &nbsp;/&nbsp; TripSource Analytics
+          <div style={{ fontSize: 11, color: '#5B7AB5', marginBottom: 14, fontWeight: 600, letterSpacing: '0.04em' }}>
+            BCD Travel &nbsp;/&nbsp; BCD Analytics
           </div>
 
           {/* Heading */}
-          <h1 style={{ fontSize: 36, lineHeight: 1.1, fontWeight: 800, color: '#1A1245', letterSpacing: '-0.03em', maxWidth: 560, marginBottom: 14 }}>
+          <h1 style={{ fontSize: 36, lineHeight: 1.1, fontWeight: 800, color: '#001E50', letterSpacing: '-0.03em', maxWidth: 560, marginBottom: 14 }}>
             Welcome back to<br />
-            <span style={{ color: '#2B2777' }}>TripSource.</span>
+            <span style={{ color: '#003087' }}>BCD Analytics.</span>
           </h1>
 
           {/* Subtitle */}
-          <p style={{ color: '#4A4570', fontSize: 14.5, lineHeight: 1.65, maxWidth: 500, marginBottom: 26 }}>
+          <p style={{ color: '#3D5A8A', fontSize: 14.5, lineHeight: 1.65, maxWidth: 500, marginBottom: 26 }}>
             Travel spend analytics, payment insights, and real-time card tracking — powered by AI Analyst. You're on the{' '}
-            <strong style={{ color: '#1A1245', fontWeight: 700 }}>{tierName}</strong> plan.
+            <strong style={{ color: '#001E50', fontWeight: 700 }}>{tierName}</strong> plan.
           </p>
 
           {/* CTAs */}
@@ -603,7 +603,7 @@ export default function Home() {
 
           {/* Quick Access */}
           <h2 style={{
-            fontSize: 15, fontWeight: 700, color: '#1A1235',
+            fontSize: 15, fontWeight: 700, color: '#001E50',
             margin: '28px 0 14px', letterSpacing: '-0.01em',
           }}>
             Quick Access

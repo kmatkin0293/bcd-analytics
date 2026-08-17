@@ -1,55 +1,44 @@
 import { useNavigate } from 'react-router-dom'
 import { useTier } from '../context/TierContext'
 
-// ─── TripSource logo mark ─────────────────────────────────────────────────────
-// Solid white left pillar + 3 curved white strips that go horizontal then arc
-// 90° downward — matching the official TripSource app icon.
+// ─── BCD Analytics logo mark ──────────────────────────────────────────────────
 
-function TripSourceMark({ size = 34 }: { size?: number }) {
+function BCDMark({ size = 34 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="tsMark" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#F46522" />
-          <stop offset="100%" stopColor="#C41208" />
+        <linearGradient id="bcdGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#0D47A1" />
+          <stop offset="100%" stopColor="#003087" />
         </linearGradient>
-        {/* Clip everything to the rounded-square shape */}
-        <clipPath id="tsClip">
-          <rect width="100" height="100" rx="18" />
-        </clipPath>
       </defs>
-      {/* Gradient background */}
-      <rect width="100" height="100" rx="18" fill="url(#tsMark)" />
-      <g clipPath="url(#tsClip)">
-        {/* Solid left pillar — full height, ~1/3 of icon width */}
-        <rect x="0" y="0" width="33" height="100" fill="white" />
-        {/*
-          3 strips: each goes horizontal from the pillar edge, arcs 90° clockwise,
-          then continues straight down to the bottom of the icon.
-          Outer strip has the largest radius, inner the smallest.
-        */}
-        <path d="M33 15 H61 A22 22 0 0 1 83 37 V100" stroke="white" strokeWidth="10" fill="none" />
-        <path d="M33 40 H54 A14 14 0 0 1 68 54 V100" stroke="white" strokeWidth="10" fill="none" />
-        <path d="M33 65 H46 A7  7  0 0 1 53 72 V100" stroke="white" strokeWidth="10" fill="none" />
-      </g>
+      <rect width="100" height="100" rx="18" fill="url(#bcdGrad)" />
+      {/* Bar chart analytics icon */}
+      <rect x="18" y="52" width="14" height="32" rx="3" fill="white" fillOpacity="0.9" />
+      <rect x="38" y="36" width="14" height="48" rx="3" fill="white" />
+      <rect x="58" y="20" width="14" height="64" rx="3" fill="#F46522" />
+      {/* Trend line across the top of bars */}
+      <polyline points="25,52 45,36 65,20" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" strokeOpacity="0.6" />
     </svg>
   )
 }
 
-function TripSourceLogo() {
+function BCDAnalyticsLogo() {
   const navigate = useNavigate()
   return (
     <div
       onClick={() => navigate('/')}
       style={{ display: 'flex', alignItems: 'center', gap: 9, cursor: 'pointer', userSelect: 'none' }}
     >
-      <TripSourceMark size={34} />
-      <span style={{
-        fontSize: 16, fontWeight: 600, letterSpacing: '-0.01em',
-        color: '#1A2340', lineHeight: 1,
-      }}>
-        tripsource
-      </span>
+      <BCDMark size={34} />
+      <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+        <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: '-0.02em', color: '#001E50' }}>
+          BCD Analytics
+        </span>
+        <span style={{ fontSize: 10, fontWeight: 500, color: '#7B95BB', letterSpacing: '0.02em', marginTop: 1 }}>
+          by BCD Travel
+        </span>
+      </div>
     </div>
   )
 }
@@ -94,8 +83,8 @@ export default function Header() {
 
   return (
     <header className="header">
-      {/* Left: TripSource logo */}
-      <TripSourceLogo />
+      {/* Left: BCD Analytics logo */}
+      <BCDAnalyticsLogo />
 
       {/* Right: action items */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -114,7 +103,7 @@ export default function Header() {
           <BellIcon />
         </button>
 
-        <div className="avatar" title="BCD Travel">BT</div>
+        <div className="avatar" title="BCD Analytics">BA</div>
       </div>
     </header>
   )

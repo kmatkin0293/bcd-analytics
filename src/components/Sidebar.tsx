@@ -157,7 +157,7 @@ export default function Sidebar() {
   useLocation()
 
   const tierLabel = tier === 'pro' ? 'Pro' : tier === 'essentials' ? 'Essentials' : 'Basic'
-  const tierColor = tier === 'pro' ? '#E8652A' : tier === 'essentials' ? '#2B2777' : '#9CA3AF'
+  const tierColor = tier === 'pro' ? '#F46522' : tier === 'essentials' ? '#003087' : '#9CA3AF'
 
   return (
     <aside className="sidebar">
@@ -188,14 +188,14 @@ export default function Sidebar() {
             to="/ai-assistant"
             className={({ isActive }) => `nav-item nav-item--ai${isActive ? ' active' : ''}`}
           >
-            <span className="nav-icon" style={{ color: '#E8652A' }}><AIIcon /></span>
-            <span style={{ color: '#E8652A', fontWeight: 600 }}>AI Analyst</span>
+            <span className="nav-icon" style={{ color: '#F46522' }}><AIIcon /></span>
+            <span style={{ color: '#F46522', fontWeight: 600 }}>AI Analyst</span>
           </NavLink>
         )}
 
         {/* Tier badge — click to switch tier */}
         {!isInteractive && (
-          <div style={{ margin: '4px 8px', padding: '6px 10px', background: 'rgba(43,39,119,0.06)', borderRadius: 8, fontSize: 11, color: '#7B6AA0' }}>
+          <div style={{ margin: '4px 8px', padding: '6px 10px', background: 'rgba(0,48,135,0.06)', borderRadius: 8, fontSize: 11, color: '#5B7AB5' }}>
             Interactive features disabled on Basic.
           </div>
         )}
@@ -206,12 +206,12 @@ export default function Sidebar() {
           onClick={() => navigate('/tier-select')}
           style={{
             width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            background: 'rgba(43,39,119,0.05)', border: '1px solid rgba(43,39,119,0.12)',
+            background: 'rgba(0,48,135,0.05)', border: '1px solid rgba(0,48,135,0.12)',
             borderRadius: 8, padding: '7px 10px', cursor: 'pointer', fontFamily: 'inherit',
             marginBottom: 10, transition: 'background 0.15s',
           }}
-          onMouseEnter={e => e.currentTarget.style.background = 'rgba(43,39,119,0.10)'}
-          onMouseLeave={e => e.currentTarget.style.background = 'rgba(43,39,119,0.05)'}
+          onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,48,135,0.10)'}
+          onMouseLeave={e => e.currentTarget.style.background = 'rgba(0,48,135,0.05)'}
         >
           <span style={{ fontSize: 11, fontWeight: 600, color: '#5B6B8A' }}>Account tier</span>
           <span style={{ fontSize: 11, fontWeight: 700, color: tierColor }}>{tierLabel}</span>

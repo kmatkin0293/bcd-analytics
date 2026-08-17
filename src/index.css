@@ -1,28 +1,28 @@
 /* ─── Design tokens ─────────────────────────────────────────── */
 :root {
-  --accent:           #2B2777;
-  --accent-hover:     #211E5C;
-  --accent-light:     rgba(43, 39, 119, 0.07);
-  --accent-border:    rgba(43, 39, 119, 0.20);
-  --accent-glow:      rgba(43, 39, 119, 0.25);
-  --orange:           #E8652A;
-  --orange-light:     rgba(232, 101, 42, 0.10);
+  --accent:           #003087;
+  --accent-hover:     #002270;
+  --accent-light:     rgba(0, 48, 135, 0.07);
+  --accent-border:    rgba(0, 48, 135, 0.20);
+  --accent-glow:      rgba(0, 48, 135, 0.25);
+  --orange:           #F46522;
+  --orange-light:     rgba(244, 101, 34, 0.10);
 
-  --bg-page:          #EDEAF7;
+  --bg-page:          #EDF2FC;
   --bg-white:         #FFFFFF;
   --bg-card:          #FFFFFF;
-  --bg-card-hover:    #F4F2FC;
+  --bg-card-hover:    #F0F4FC;
 
   --sidebar-bg:       transparent;
-  --sidebar-border:   #D8D3ED;
+  --sidebar-border:   #CBD8EE;
   --header-bg:        transparent;
-  --header-border:    #D8D3ED;
+  --header-border:    #CBD8EE;
 
-  --text-primary:     #1A1245;
-  --text-secondary:   #4A4570;
-  --text-muted:       #9B96B8;
-  --border:           #DED9EF;
-  --border-strong:    #C4BDE0;
+  --text-primary:     #001E50;
+  --text-secondary:   #3D5A8A;
+  --text-muted:       #7B95BB;
+  --border:           #D0DAEF;
+  --border-strong:    #B8C8E4;
 
   --sidebar-w:        220px;
   --header-h:         58px;
@@ -37,7 +37,7 @@
 
 body {
   font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: linear-gradient(160deg, #FFFFFF 0%, #EDEAF7 55%, #E0DAF3 100%);
+  background: linear-gradient(160deg, #FFFFFF 0%, #EDF2FC 55%, #D6E2F5 100%);
   color: var(--text-primary);
   overflow: hidden;
   -webkit-font-smoothing: antialiased;
@@ -109,7 +109,7 @@ body {
   transition: background 0.15s, color 0.15s;
 }
 .icon-btn:hover {
-  background: rgba(43,39,119,0.10);
+  background: rgba(0,48,135,0.10);
   color: var(--text-primary);
 }
 
@@ -169,7 +169,7 @@ body {
   margin: 1px 0;
 }
 .nav-item:hover {
-  background: rgba(43,39,119,0.08);
+  background: rgba(0,48,135,0.08);
   color: var(--text-primary);
 }
 .nav-item.active {
@@ -225,7 +225,7 @@ body {
   white-space: nowrap;
 }
 .nav-sub-item:hover {
-  background: rgba(43,39,119,0.08);
+  background: rgba(0,48,135,0.08);
   color: var(--text-primary);
 }
 .nav-sub-item.active {
@@ -529,7 +529,7 @@ body {
 }
 .input-box {
   flex: 1;
-  background: #F7F6FB;
+  background: #F2F6FC;
   border: 1px solid var(--border);
   border-radius: 22px;
   padding: 8px 14px;
