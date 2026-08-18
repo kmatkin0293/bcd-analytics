@@ -1,7 +1,7 @@
 import { LiveboardEmbed } from '@thoughtspot/visual-embed-sdk/react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTier } from '../context/TierContext'
-import { hiddenActionsForTier } from '../App'
+import { hiddenActionsForTier } from '../tierActions'
 
 const LIVEBOARD_ID = '757c3274-bbf8-490d-8078-f64f44351a64'
 

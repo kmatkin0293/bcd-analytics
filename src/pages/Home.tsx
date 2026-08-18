@@ -8,10 +8,10 @@ const WORKSHEET_ID = '83774852-f400-4fdc-94b3-a6be4804c201'
 const TS_HOST      = 'https://sebe.thoughtspotstaging.cloud'
 const LIVEBOARD_ID = '757c3274-bbf8-490d-8078-f64f44351a64'
 
-const ACCENT       = '#003087'
-const ACCENT_LIGHT = 'rgba(0,48,135,0.07)'
-const ACCENT_BORDER= 'rgba(0,48,135,0.20)'
-const ORANGE       = '#F46522'
+const ACCENT       = '#0B0052'
+const ACCENT_LIGHT = 'rgba(11,0,82,0.07)'
+const ACCENT_BORDER= 'rgba(11,0,82,0.18)'
+const ORANGE       = '#FC4C02'
 
 // ─── KPI icons ────────────────────────────────────────────────────────────────
 
@@ -279,7 +279,7 @@ function SearchBar() {
   }, [])
 
   const go = (q: string) => {
-    if (q.trim()) navigate(`/ai-assistant?q=${encodeURIComponent(q.trim())}`)
+    if (q.trim()) navigate(`/spotter?q=${encodeURIComponent(q.trim())}`)
   }
 
   return (
@@ -288,10 +288,10 @@ function SearchBar() {
         <div style={{
           display: 'flex', alignItems: 'center',
           background: '#FFFFFF',
-          border: '1px solid #CBD8EE',
+          border: '1px solid #DDE4E9',
           borderRadius: '12px', padding: '4px 4px 4px 16px',
         }}>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B7AB5" strokeWidth="2" style={{ flexShrink: 0, marginRight: 10 }}>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8DA3B0" strokeWidth="2" style={{ flexShrink: 0, marginRight: 10 }}>
             <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
           <input
@@ -302,8 +302,8 @@ function SearchBar() {
             placeholder={placeholder || 'Ask AI Analyst anything about your travel spend data…'}
             style={{
               flex: 1, background: 'transparent', border: 'none', outline: 'none',
-              color: '#001E50', fontSize: '13.5px', fontFamily: 'inherit',
-              padding: '10px 0', caretColor: '#003087',
+              color: '#0B0052', fontSize: '13.5px', fontFamily: 'inherit',
+              padding: '10px 0', caretColor: '#0B0052',
             }}
           />
           <button
@@ -333,19 +333,19 @@ function SearchBar() {
             onClick={() => go(c)}
             style={{
               background: '#FFFFFF',
-              border: '1px solid #CBD8EE',
+              border: '1px solid #DDE4E9',
               borderRadius: '20px', padding: '5px 13px',
-              color: '#3D5A8A',
+              color: '#2A3744',
               fontSize: '12px', cursor: 'pointer', fontFamily: 'inherit',
               transition: 'all 0.15s',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.borderColor = '#003087'
-              e.currentTarget.style.color = '#003087'
+              e.currentTarget.style.borderColor = '#FC4C02'
+              e.currentTarget.style.color = '#FC4C02'
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.borderColor = '#CBD8EE'
-              e.currentTarget.style.color = '#3D5A8A'
+              e.currentTarget.style.borderColor = '#DDE4E9'
+              e.currentTarget.style.color = '#2A3744'
             }}
           >
             {c}
@@ -360,38 +360,58 @@ function SearchBar() {
 
 const NAV_CARDS = [
   {
-    route: '/supply-chain',
+    route: '/liveboards',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-        <line x1="1" y1="10" x2="23" y2="10"/>
+        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
       </svg>
     ),
-    title: 'Payment Insights',
-    body:  'Total card charges, transaction volumes, central and virtual card account analytics.',
+    title: 'My Reports',
+    body:  'Browse and explore all available reports and liveboards across your travel program.',
   },
   {
-    route: '/program-insights/overview',
+    route: '/answers',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <line x1="18" y1="20" x2="18" y2="10"/>
-        <line x1="12" y1="20" x2="12" y2="4"/>
-        <line x1="6" y1="20" x2="6" y2="14"/>
-        <line x1="2" y1="20" x2="22" y2="20"/>
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
       </svg>
     ),
-    title: 'Program Insights',
-    body:  'Benchmarking performance across policy compliance, spend categories, and travel programs.',
+    title: 'Answers',
+    body:  'View and manage all saved answers and search results from your travel analytics.',
   },
   {
-    route: '/ai-assistant',
+    route: '/search-data',
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2l2.09 6.26L20 10l-5.91 1.74L12 18l-2.09-6.26L4 10l5.91-1.74L12 2z"/>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+        <ellipse cx="12" cy="5" rx="9" ry="3"/>
+        <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+        <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
       </svg>
     ),
-    title: 'AI Analyst',
-    body:  'Ask questions in plain English and get instant AI-powered travel spend insights.',
+    title: 'Search Data',
+    body:  'Search across all your travel data using natural language or guided search.',
+  },
+  {
+    route: '/spotter',
+    icon: (
+      <svg width="28" height="16" viewBox="0 0 46 32" fill="currentColor">
+        <path d="M9.159,23H14.5c0.006,0,0.01-0.003,0.016-0.003c1.011,5.152,4.522,8.969,8.698,8.969
+          c4.175,0,7.685-3.816,8.697-8.966h4.172c-0.881,0.636-1.462,1.666-1.462,2.833c0,1.93,1.57,3.5,3.5,3.5s3.5-1.57,3.5-3.5
+          c0-1.167-0.58-2.197-1.462-2.833H45.5c0.276,0,0.5-0.224,0.5-0.5S45.776,22,45.5,22H32.074c0.085-0.663,0.139-1.34,0.139-2.034
+          c0-2.598-0.629-4.999-1.686-6.966H36.5c0.276,0,0.5-0.224,0.5-0.5S36.776,12,36.5,12h-6c-0.177,0-0.324,0.097-0.413,0.235
+          c-1.594-2.516-3.949-4.138-6.587-4.25V1c0-0.276-0.224-0.5-0.5-0.5S22.5,0.724,22.5,1v7c0,0.005,0.003,0.009,0.003,0.014
+          C20.121,8.264,18.002,10,16.501,12c0,0-0.001,0-0.001,0h-6c-0.276,0-0.5,0.224-0.5,0.5s0.224,0.5,0.5,0.5h5.4
+          c-1.057,1.966-1.686,4.368-1.686,6.966c0,0.695,0.054,1.372,0.139,2.034H0.5C0.224,22,0,22.224,0,22.5S0.224,23,0.5,23h4.583
+          c-0.881,0.636-1.462,1.666-1.462,2.833c0,1.93,1.57,3.5,3.5,3.5s3.5-1.57,3.5-3.5C10.621,24.666,10.041,23.636,9.159,23z
+           M40.621,25.833c0,1.379-1.122,2.5-2.5,2.5s-2.5-1.121-2.5-2.5s1.122-2.5,2.5-2.5S40.621,24.454,40.621,25.833z M23.214,8.966
+          c4.411,0,8,4.935,8,11s-3.589,11-8,11s-8-4.935-8-11S18.803,8.966,23.214,8.966z M7.121,28.333c-1.378,0-2.5-1.121-2.5-2.5
+          s1.122-2.5,2.5-2.5s2.5,1.121,2.5,2.5S8.5,28.333,7.121,28.333z"/>
+        <path d="M20.5,16h5c0.276,0,0.5-0.224,0.5-0.5S25.776,15,25.5,15h-5c-0.276,0-0.5,0.224-0.5,0.5S20.224,16,20.5,16z"/>
+      </svg>
+    ),
+    title: 'BCD AI',
+    body:  'Ask natural language questions about your travel data and get instant AI-powered answers.',
     accentOrange: true,
   },
 ]
@@ -426,8 +446,8 @@ function NavCard({ icon, title, body, route, accentOrange }: { icon: React.React
       }}>
         {icon}
       </div>
-      <h3 style={{ fontSize: 13, fontWeight: 700, color: '#001E50', marginBottom: 5 }}>{title}</h3>
-      <p style={{ fontSize: 12, color: '#5B7A9A', lineHeight: 1.55, marginBottom: 14 }}>{body}</p>
+      <h3 style={{ fontSize: 13, fontWeight: 700, color: '#0B0052', marginBottom: 5 }}>{title}</h3>
+      <p style={{ fontSize: 12, color: '#2A3744', lineHeight: 1.55, marginBottom: 14 }}>{body}</p>
       <div style={{ display: 'flex', alignItems: 'center', gap: 4, color: color, fontSize: 12, fontWeight: 600 }}>
         Open
         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -510,10 +530,10 @@ function HeroDecoration() {
 
 export default function Home() {
   const { kpis, loading } = useKpis()
-  const { tier, isSpotterPro } = useTier()
+  const { tier } = useTier()
   const navigate = useNavigate()
 
-  const tierName = tier === 'pro' ? 'Pro' : tier === 'essentials' ? 'Essentials' : 'Basic'
+  const tierName = tier === 'enterprise' ? 'Enterprise' : tier === 'premium' ? 'Premium' : 'Basic'
 
   return (
     <div style={{ background: 'transparent' }}>
@@ -532,26 +552,26 @@ export default function Home() {
         <div style={{ padding: '30px 44px 34px', position: 'relative', zIndex: 1 }}>
 
           {/* Breadcrumb */}
-          <div style={{ fontSize: 11, color: '#5B7AB5', marginBottom: 14, fontWeight: 600, letterSpacing: '0.04em' }}>
+          <div style={{ fontSize: 11, color: '#8DA3B0', marginBottom: 14, fontWeight: 600, letterSpacing: '0.04em' }}>
             BCD Travel &nbsp;/&nbsp; BCD Analytics
           </div>
 
           {/* Heading */}
-          <h1 style={{ fontSize: 36, lineHeight: 1.1, fontWeight: 800, color: '#001E50', letterSpacing: '-0.03em', maxWidth: 560, marginBottom: 14 }}>
+          <h1 style={{ fontSize: 36, lineHeight: 1.1, fontWeight: 800, color: '#0B0052', letterSpacing: '-0.03em', maxWidth: 560, marginBottom: 14 }}>
             Welcome back to<br />
-            <span style={{ color: '#003087' }}>BCD Analytics.</span>
+            <span style={{ color: '#FC4C02' }}>BCD Analytics.</span>
           </h1>
 
           {/* Subtitle */}
-          <p style={{ color: '#3D5A8A', fontSize: 14.5, lineHeight: 1.65, maxWidth: 500, marginBottom: 26 }}>
+          <p style={{ color: '#2A3744', fontSize: 14.5, lineHeight: 1.65, maxWidth: 500, marginBottom: 26 }}>
             Travel spend analytics, payment insights, and real-time card tracking — powered by AI Analyst. You're on the{' '}
-            <strong style={{ color: '#001E50', fontWeight: 700 }}>{tierName}</strong> plan.
+            <strong style={{ color: '#0B0052', fontWeight: 700 }}>{tierName}</strong> plan.
           </p>
 
           {/* CTAs */}
           <div style={{ display: 'flex', gap: 10, marginBottom: 28 }}>
             <button
-              onClick={() => navigate('/supply-chain')}
+              onClick={() => navigate('/liveboards')}
               style={{
                 background: ACCENT, color: '#ffffff', border: 'none',
                 borderRadius: 8, padding: '10px 24px', fontWeight: 700,
@@ -561,32 +581,28 @@ export default function Home() {
               onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-1px)' }}
               onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'none' }}
             >
-              Payment Insights
+              My Reports
             </button>
-            {isSpotterPro && (
-              <button
-                onClick={() => navigate('/ai-assistant')}
-                style={{
-                  background: ORANGE, color: '#ffffff',
-                  border: 'none',
-                  borderRadius: 8, padding: '10px 24px', fontWeight: 700,
-                  fontSize: 13.5, cursor: 'pointer', fontFamily: 'inherit',
-                  transition: 'opacity 0.15s, transform 0.15s',
-                }}
-                onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-1px)' }}
-                onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'none' }}
-              >
-                Ask AI Analyst
-              </button>
-            )}
+            <button
+              onClick={() => navigate('/spotter')}
+              style={{
+                background: ORANGE, color: '#ffffff',
+                border: 'none',
+                borderRadius: 8, padding: '10px 24px', fontWeight: 700,
+                fontSize: 13.5, cursor: 'pointer', fontFamily: 'inherit',
+                transition: 'opacity 0.15s, transform 0.15s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = '0.88'; e.currentTarget.style.transform = 'translateY(-1px)' }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.transform = 'none' }}
+            >
+              Open BCD AI
+            </button>
           </div>
 
           {/* Search bar */}
-          {isSpotterPro && (
-            <div style={{ maxWidth: 660 }}>
-              <SearchBar />
-            </div>
-          )}
+          <div style={{ maxWidth: 660 }}>
+            <SearchBar />
+          </div>
         </div>
       </section>
 
@@ -603,16 +619,13 @@ export default function Home() {
 
           {/* Quick Access */}
           <h2 style={{
-            fontSize: 15, fontWeight: 700, color: '#001E50',
+            fontSize: 15, fontWeight: 700, color: '#0B0052',
             margin: '28px 0 14px', letterSpacing: '-0.01em',
           }}>
             Quick Access
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
-            {NAV_CARDS.filter(c => {
-              if (c.route === '/ai-assistant') return isSpotterPro
-              return true
-            }).map(c => (
+            {NAV_CARDS.map(c => (
               <NavCard key={c.route} {...c} />
             ))}
           </div>

@@ -2,55 +2,62 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTier, Tier } from '../context/TierContext'
 
-const ORANGE = '#F46522'
+const ORANGE = '#FC4C02'
 
 const TIERS: {
   id: Tier
   badge: string
   name: string
   desc: string
+  highlight: boolean
   features: { label: string; included: boolean }[]
 }[] = [
   {
     id: 'basic',
-    badge: 'Read Only',
+    badge: 'Tier 1',
     name: 'Basic',
-    desc: 'View all dashboards and liveboards with no interactive features or AI.',
+    highlight: false,
+    desc: 'Full analytics access plus BCD AI for natural language questions — without advanced AI modes.',
     features: [
-      { label: 'Payment Insights Dashboard',     included: true  },
-      { label: 'Program Analytics',              included: true  },
-      { label: 'Drill-down & Filters',           included: false },
-      { label: 'Download & Export',              included: false },
-      { label: 'Copy & Share',                   included: false },
-      { label: 'AI Analyst & SpotIQ',            included: false },
+      { label: 'All Liveboards & Reports',       included: true  },
+      { label: 'Drill-down, Filters & Export',   included: true  },
+      { label: 'BCD AI Chat',                    included: true  },
+      { label: 'Fast Search & Deep Analysis',    included: false },
+      { label: 'MCP Tools',                      included: false },
+      { label: 'Chat History',                   included: false },
+      { label: 'Analysts',                       included: false },
     ],
   },
   {
-    id: 'essentials',
-    badge: 'Standard',
-    name: 'Essentials',
-    desc: 'Full interactive analytics — drill-down, filters, exports — without AI features.',
+    id: 'premium',
+    badge: 'Tier 2',
+    name: 'Premium',
+    highlight: false,
+    desc: 'Everything in Basic plus advanced AI query modes and MCP-powered tool responses.',
     features: [
-      { label: 'Payment Insights Dashboard',     included: true  },
-      { label: 'Program Analytics',              included: true  },
-      { label: 'Drill-down & Filters',           included: true  },
-      { label: 'Download & Export',              included: true  },
-      { label: 'Copy & Share',                   included: true  },
-      { label: 'AI Analyst & SpotIQ',            included: false },
+      { label: 'All Liveboards & Reports',       included: true  },
+      { label: 'Drill-down, Filters & Export',   included: true  },
+      { label: 'BCD AI Chat',                    included: true  },
+      { label: 'Fast Search & Deep Analysis',    included: true  },
+      { label: 'MCP Tools',                      included: true  },
+      { label: 'Chat History',                   included: false },
+      { label: 'Analysts',                       included: false },
     ],
   },
   {
-    id: 'pro',
-    badge: 'Recommended',
-    name: 'Pro',
-    desc: 'Everything in Essentials plus AI Analyst, SpotIQ and change analysis.',
+    id: 'enterprise',
+    badge: 'Tier 3',
+    name: 'Enterprise',
+    highlight: true,
+    desc: 'The full BCD AI experience — MCP tools, conversation history, and AI analysts.',
     features: [
-      { label: 'Payment Insights Dashboard',     included: true },
-      { label: 'Program Analytics',              included: true },
-      { label: 'Drill-down & Filters',           included: true },
-      { label: 'Download & Export',              included: true },
-      { label: 'Copy & Share',                   included: true },
-      { label: 'AI Analyst & SpotIQ',            included: true },
+      { label: 'All Liveboards & Reports',       included: true },
+      { label: 'Drill-down, Filters & Export',   included: true },
+      { label: 'BCD AI Chat',                    included: true },
+      { label: 'Fast Search & Deep Analysis',    included: true },
+      { label: 'MCP Tools',                      included: true },
+      { label: 'Chat History',                   included: true },
+      { label: 'Analysts',                       included: true },
     ],
   },
 ]
@@ -75,14 +82,14 @@ function BCDMark() {
     <svg width="36" height="36" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="bcdGradSel" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#1565C0" />
-          <stop offset="100%" stopColor="#003087" />
+          <stop offset="0%" stopColor="#180075" />
+          <stop offset="100%" stopColor="#0B0052" />
         </linearGradient>
       </defs>
       <rect width="100" height="100" rx="18" fill="url(#bcdGradSel)" />
       <rect x="18" y="52" width="14" height="32" rx="3" fill="white" fillOpacity="0.9" />
       <rect x="38" y="36" width="14" height="48" rx="3" fill="white" />
-      <rect x="58" y="20" width="14" height="64" rx="3" fill="#F46522" />
+      <rect x="58" y="20" width="14" height="64" rx="3" fill="#FC4C02" />
       <polyline points="25,52 45,36 65,20" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" strokeOpacity="0.6" />
     </svg>
   )
@@ -102,7 +109,7 @@ export default function TierSelect() {
     <div style={{
       minHeight: '100vh', display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
-      background: 'linear-gradient(145deg, #0B5EAE 0%, #073F7A 40%, #041840 100%)',
+      background: 'linear-gradient(145deg, #180075 0%, #0B0052 45%, #060030 100%)',
       padding: '40px 24px',
       fontFamily: "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
     }}>
@@ -118,18 +125,18 @@ export default function TierSelect() {
         <h1 style={{ fontSize: 30, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: 10, lineHeight: 1.15 }}>
           Choose your account tier
         </h1>
-        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 14.5, lineHeight: 1.6, maxWidth: 480, margin: '0 auto' }}>
-          Select the level of access for this BCD Analytics session
+        <p style={{ color: 'rgba(255,255,255,0.72)', fontSize: 14.5, lineHeight: 1.6, maxWidth: 520, margin: '0 auto' }}>
+          All tiers include full analytics access. Tiers differ in the level of BCD AI capability available.
         </p>
       </div>
 
       {/* Cards */}
-      <div style={{ display: 'flex', gap: 16, maxWidth: 980, width: '100%', alignItems: 'stretch' }}>
+      <div style={{ display: 'flex', gap: 16, maxWidth: 1020, width: '100%', alignItems: 'stretch' }}>
         {TIERS.map(t => {
           const isActive = currentTier === t.id
           const isHovered = hover === t.id
-          const isPro = t.id === 'pro'
-          const borderColor = isPro
+          const isHighlight = t.highlight
+          const borderColor = isHighlight
             ? (isHovered || isActive ? ORANGE : 'rgba(232,101,42,0.45)')
             : (isHovered || isActive ? 'rgba(255,255,255,0.30)' : 'rgba(255,255,255,0.12)')
 
@@ -142,7 +149,7 @@ export default function TierSelect() {
                 flex: 1,
                 background: 'rgba(255,255,255,0.06)',
                 backdropFilter: 'blur(20px)',
-                border: `${isPro ? '1.5px' : '1px'} solid ${borderColor}`,
+                border: `${isHighlight ? '1.5px' : '1px'} solid ${borderColor}`,
                 borderRadius: 14, padding: '28px 24px',
                 display: 'flex', flexDirection: 'column',
                 transition: 'border-color 0.18s, transform 0.18s',
@@ -166,9 +173,9 @@ export default function TierSelect() {
                 <span style={{
                   display: 'inline-block', fontSize: 10, fontWeight: 700, letterSpacing: '0.08em',
                   textTransform: 'uppercase',
-                  color: isPro ? ORANGE : 'rgba(255,255,255,0.50)',
-                  background: isPro ? 'rgba(232,101,42,0.12)' : 'rgba(255,255,255,0.08)',
-                  border: `1px solid ${isPro ? 'rgba(232,101,42,0.28)' : 'rgba(255,255,255,0.12)'}`,
+                  color: isHighlight ? ORANGE : 'rgba(255,255,255,0.50)',
+                  background: isHighlight ? 'rgba(232,101,42,0.12)' : 'rgba(255,255,255,0.08)',
+                  border: `1px solid ${isHighlight ? 'rgba(232,101,42,0.28)' : 'rgba(255,255,255,0.12)'}`,
                   padding: '3px 10px', borderRadius: 20, marginBottom: 10,
                 }}>
                   {t.badge}
@@ -196,14 +203,14 @@ export default function TierSelect() {
               <button
                 onClick={() => choose(t.id)}
                 style={{
-                  background: isPro ? ORANGE : 'rgba(255,255,255,0.08)',
-                  border: isPro ? 'none' : '1px solid rgba(255,255,255,0.18)',
+                  background: isHighlight ? ORANGE : 'rgba(255,255,255,0.08)',
+                  border: isHighlight ? 'none' : '1px solid rgba(255,255,255,0.18)',
                   color: '#fff', borderRadius: 9, padding: '11px 22px',
                   fontSize: 13.5, fontWeight: 700, cursor: 'pointer',
                   fontFamily: 'inherit', transition: 'background 0.15s', width: '100%',
                 }}
-                onMouseEnter={e => e.currentTarget.style.background = isPro ? '#d05520' : 'rgba(255,255,255,0.14)'}
-                onMouseLeave={e => e.currentTarget.style.background = isPro ? ORANGE : 'rgba(255,255,255,0.08)'}
+                onMouseEnter={e => e.currentTarget.style.background = isHighlight ? '#d05520' : 'rgba(255,255,255,0.14)'}
+                onMouseLeave={e => e.currentTarget.style.background = isHighlight ? ORANGE : 'rgba(255,255,255,0.08)'}
               >
                 {isActive ? `Continue as ${t.name}` : `Switch to ${t.name}`}
               </button>

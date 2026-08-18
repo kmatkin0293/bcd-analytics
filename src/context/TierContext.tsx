@@ -1,35 +1,38 @@
 import { createContext, useContext, useState } from 'react'
 
-export type Tier = 'basic' | 'essentials' | 'pro'
+export type Tier = 'basic' | 'premium' | 'enterprise'
 
 export const TIER_LABELS: Record<Tier, string> = {
   basic:      'Basic',
-  essentials: 'Essentials',
-  pro:        'Pro',
+  premium:    'Premium',
+  enterprise: 'Enterprise',
 }
 
 interface TierContextValue {
   tier: Tier
   setTier: (t: Tier) => void
-  isSpotterPro: boolean   // pro only — AI features
-  isInteractive: boolean  // essentials + pro — interactive features (drill, filter, export…)
+  hasMCP: boolean          // premium + enterprise — MCP tool responses in BCD AI
+  hasChatHistory: boolean  // enterprise only — past conversations sidebar
+  hasAnalysts: boolean     // enterprise only — analysts section in sidebar
 }
 
 const TierContext = createContext<TierContextValue>({
-  tier: 'pro',
+  tier: 'enterprise',
   setTier: () => {},
-  isSpotterPro: true,
-  isInteractive: true,
+  hasMCP: true,
+  hasChatHistory: true,
+  hasAnalysts: true,
 })
 
 export function TierProvider({ children }: { children: React.ReactNode }) {
-  const [tier, setTier] = useState<Tier>('pro')
+  const [tier, setTier] = useState<Tier>('enterprise')
   return (
     <TierContext.Provider value={{
       tier,
       setTier,
-      isSpotterPro:  tier === 'pro',
-      isInteractive: tier === 'essentials' || tier === 'pro',
+      hasMCP:         tier === 'premium' || tier === 'enterprise',
+      hasChatHistory: tier === 'enterprise',
+      hasAnalysts:    tier === 'enterprise',
     }}>
       {children}
     </TierContext.Provider>
