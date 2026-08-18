@@ -17,7 +17,7 @@ import {
 } from './pages/EmbedPages'
 
 init({
-  thoughtSpotHost: 'https://sebe.thoughtspotstaging.cloud',
+  thoughtSpotHost: 'https://se-thoughtspot-cloud.thoughtspot.cloud',
   authType: AuthType.Basic,
   username: 'katie.matkin@thoughtspot.com',
   password: 'Welcome2026!',
