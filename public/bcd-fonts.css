@@ -1,0 +1,61 @@
+/*
+ * BCD Analytics — Inter Display font for ThoughtSpot Style Customisation
+ *
+ * How to apply in ThoughtSpot:
+ *   Admin → Style Customisation → Custom font → paste this URL:
+ *   https://bcd-analytics.vercel.app/bcd-fonts.css
+ */
+
+/* ── Light 300 ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('https://bcd-analytics.vercel.app/fonts/inter-display/InterDisplay-Light.woff2') format('woff2');
+}
+
+/* ── Regular 400 ───────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://bcd-analytics.vercel.app/fonts/inter-display/InterDisplay-Regular.woff2') format('woff2');
+}
+
+/* ── Medium 500 — aliases to Regular ──────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('https://bcd-analytics.vercel.app/fonts/inter-display/InterDisplay-Regular.woff2') format('woff2');
+}
+
+/* ── SemiBold 600 — aliases to Bold ───────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('https://bcd-analytics.vercel.app/fonts/inter-display/InterDisplay-Bold.woff2') format('woff2');
+}
+
+/* ── Bold 700 ──────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://bcd-analytics.vercel.app/fonts/inter-display/InterDisplay-Bold.woff2') format('woff2');
+}
+
+/* ── ExtraBold 800 — aliases to Bold ──────────────────────────────────── */
+@font-face {
+  font-family: 'Inter Display';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('https://bcd-analytics.vercel.app/fonts/inter-display/InterDisplay-Bold.woff2') format('woff2');
+}
