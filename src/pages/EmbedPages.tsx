@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import {
   AppEmbed,
   SearchEmbed,
@@ -181,9 +182,6 @@ const SAMPLE_QUESTIONS = [
   { label: 'Spend by country', q: 'What is the total travel spend by country?' },
   { label: 'Frequent travellers', q: 'Who are the top 10 most frequent travellers?' },
   { label: 'Average trip cost', q: 'What is the average cost per trip?' },
-  { label: 'Trips by department', q: 'Show me the number of trips by department' },
-  { label: 'Month vs last month', q: 'How does this month compare to last month?' },
-  { label: 'Cancelled bookings', q: 'How many bookings were cancelled?' },
 ]
 
 const SpotterIcon = () => (
@@ -214,6 +212,24 @@ export function SpotterPage() {
   const embedRef = useEmbedRef<typeof SpotterEmbed>()
   const [activeIdx, setActiveIdx] = useState<number | null>(null)
   const { tier, hasMCP, hasChatHistory, hasAnalysts } = useTier()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const pendingQuery = searchParams.get('q')
+  const sentRef = useRef(false)
+
+  // After the embed loads, fire any query that came in via the URL ?q= param
+  const handleLoad = useCallback(() => {
+    if (pendingQuery && !sentRef.current) {
+      sentRef.current = true
+      setTimeout(() => {
+        embedRef.current?.trigger(HostEvent.SpotterSearch, {
+          query: pendingQuery,
+          executeSearch: true,
+        })
+        // Clean the query param from the URL without a page reload
+        setSearchParams({}, { replace: true })
+      }, 800)
+    }
+  }, [pendingQuery, setSearchParams])
 
   const handleQuestion = (q: string, idx: number) => {
     setActiveIdx(idx)
@@ -317,6 +333,7 @@ export function SpotterPage() {
               worksheetId={WORKSHEET_ID}
               hideSampleQuestions={true}
               frameParams={{ width: '100%', height: 'calc(100vh - 200px)' }}
+              onLoad={handleLoad}
               {...tierSpotterProps}
             />
           </div>
